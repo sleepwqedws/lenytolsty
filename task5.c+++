@@ -1,0 +1,92 @@
+# Задание 1: Базовая сортировка пузырьком
+def bubble_sort_basic(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+# Ввод
+N = int(input("Введите количество элементов: "))
+arr = list(map(int, input("Введите элементы: ").split()))
+
+# Сортировка
+sorted_arr = bubble_sort_basic(arr)
+
+# Вывод
+print(" ".join(map(str, sorted_arr)))
+
+
+  # Задание 2: Сортировка с подсчётом проходов
+def bubble_sort_with_passes(arr):
+    n = len(arr)
+    passes = 0
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        passes += 1
+        if not swapped:
+            break
+    return arr, passes
+
+# Ввод
+N = int(input("Введите количество элементов: "))
+arr = list(map(int, input("Введите элементы: ").split()))
+
+# Сортировка
+sorted_arr, passes = bubble_sort_with_passes(arr)
+
+# Вывод
+print(f"Отсортированный массив: {' '.join(map(str, sorted_arr))}")
+print(f"Количество проходов: {passes}")
+
+
+# Задание 3: Пузырьковая сортировка по убыванию
+def bubble_sort_desc(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] < arr[j + 1]:  # меняем условие для убывания
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+# Ввод
+N = int(input("Введите количество элементов: "))
+arr = list(map(float, input("Введите элементы: ").split()))
+
+# Сортировка
+sorted_arr = bubble_sort_desc(arr)
+
+# Вывод (форматируем числа, чтобы убрать лишние нули)
+print(" ".join(str(x) for x in sorted_arr))
+
+
+# Задание 4: Оптимизированная пузырьковая сортировка
+def bubble_sort_optimized(arr):
+    n = len(arr)
+    total_swaps = 0
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+                total_swaps += 1
+        if not swapped:
+            break
+    return arr, total_swaps
+
+# Ввод
+N = int(input("Введите количество элементов: "))
+arr = list(map(int, input("Введите элементы: ").split()))
+
+# Сортировка
+sorted_arr, swaps = bubble_sort_optimized(arr)
+
+# Вывод
+print(f"Отсортированный массив: {' '.join(map(str, sorted_arr))}")
+print(f"Количество перестановок: {swaps}")
